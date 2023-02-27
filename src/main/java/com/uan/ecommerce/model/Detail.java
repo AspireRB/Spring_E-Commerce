@@ -1,22 +1,32 @@
 package com.uan.ecommerce.model;
 
-public class Details {
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "details")
+public class Detail {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private double amount;
     private double price;
-    private double pay;
 
-    public Details() {
+    @OneToOne
+    private Order order;
+
+    @ManyToOne
+    private Movie movie;
+
+    public Detail() {
     }
 
-    public Details(Integer id, String name, double amount, double price, double pay) {
+    public Detail(Integer id, String name, double amount, double price) {
         super();
         this.id = id;
         this.name = name;
         this.amount = amount;
         this.price = price;
-        this.pay = pay;
     }
 
     public Integer getId() {
@@ -50,13 +60,21 @@ public class Details {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    public double getPay() {
-        return pay;
+//a
+    public Order getOrder() {
+        return order;
     }
 
-    public void setPay(double pay) {
-        this.pay = pay;
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 
     @Override
@@ -66,7 +84,6 @@ public class Details {
                 ", name='" + name + '\'' +
                 ", amount=" + amount +
                 ", price=" + price +
-                ", pay=" + pay +
                 '}';
     }
 

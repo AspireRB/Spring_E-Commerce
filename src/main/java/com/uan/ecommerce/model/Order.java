@@ -1,13 +1,25 @@
 package com.uan.ecommerce.model;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
+@Table(name = "orders")
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String status = "Created";
+    private String status = "created";
     private Date startDate;
     private Date devolutionDate;
     private double pay;
+
+    @ManyToOne
+    private Client client;
+
+    @OneToOne(mappedBy = "order")
+    private Detail details;
 
     public Order() {
     }
@@ -59,6 +71,22 @@ public class Order {
 
     public void setPay(double pay) {
         this.pay = pay;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Detail getDetails() {
+        return details;
+    }
+
+    public void setDetails(Detail details) {
+        this.details = details;
     }
 
     @Override

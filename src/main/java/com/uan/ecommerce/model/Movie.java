@@ -1,6 +1,12 @@
 package com.uan.ecommerce.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "movies")
 public class Movie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String description;
@@ -8,10 +14,13 @@ public class Movie {
     private double price;
     private int amount;
 
+    @ManyToOne
+    private Client client;
+
     public Movie() {
     }
 
-    public Movie(Integer id, String name, String description, String image, double price, int amount) {
+    public Movie(Integer id, String name, String description, String image, double price, int amount, Client client) {
         super();
         this.id = id;
         this.name = name;
@@ -19,6 +28,7 @@ public class Movie {
         this.image = image;
         this.price = price;
         this.amount = amount;
+        this.client = client;
     }
 
     public Integer getId() {
@@ -67,6 +77,14 @@ public class Movie {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
