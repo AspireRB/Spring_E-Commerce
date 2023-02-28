@@ -12,7 +12,6 @@ public class Movie {
     private String description;
     private String image;
     private double price;
-    private int amount;
 
     @ManyToOne
     private Client client;
@@ -20,14 +19,13 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(Integer id, String name, String description, String image, double price, int amount, Client client) {
+    public Movie(Integer id, String name, String description, String image, double price, Client client) {
         super();
         this.id = id;
         this.name = name;
         this.description = description;
         this.image = image;
         this.price = price;
-        this.amount = amount;
         this.client = client;
     }
 
@@ -71,14 +69,6 @@ public class Movie {
         this.price = price;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
     public Client getClient() {
         return client;
     }
@@ -93,9 +83,8 @@ public class Movie {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", image=" + image +
+                ", image='" + image + '\'' +
                 ", price=" + price +
-                ", amount=" + amount +
                 '}';
     }
 

@@ -25,6 +25,7 @@ public class Client {
     }
 
     public Client(Integer id, String name, String email, String password, String type) {
+        super();
         this.id = id;
         this.name = name;
         this.email = email;

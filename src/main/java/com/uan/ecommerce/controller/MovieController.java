@@ -1,5 +1,6 @@
 package com.uan.ecommerce.controller;
 
+import com.uan.ecommerce.model.Client;
 import com.uan.ecommerce.model.Movie;
 import com.uan.ecommerce.service.MovieService;
 import org.slf4j.Logger;
@@ -32,6 +33,8 @@ public class MovieController {
     @PostMapping("/save")
     public String save(Movie movie) {
         LOGGER.info("This is the object movie {}",movie);
+        Client c = new Client(1, "", "", "", "");
+        movie.setClient(c);
         movieService.save(movie);
         return "redirect:/movies";
     }

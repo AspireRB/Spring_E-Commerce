@@ -26,6 +26,7 @@ public class Order {
     }
 
     public Order(Integer id, String number, String status, Date startDate, Date devolutionDate, double pay) {
+        super();
         this.id = id;
         this.number = number;
         this.status = status;

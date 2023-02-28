@@ -23,6 +23,7 @@ public class Detail {
     }
 
     public Detail(Integer id, String name, double amount, double price, double pay) {
+        super();
         this.id = id;
         this.name = name;
         this.amount = amount;
