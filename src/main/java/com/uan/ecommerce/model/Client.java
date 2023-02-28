@@ -13,6 +13,7 @@ public class Client {
     private String name;
     private String email;
     private String password;
+    private String type;
 
     @OneToMany(mappedBy = "client")
     private List<Movie> movies;
@@ -23,12 +24,12 @@ public class Client {
     public Client() {
     }
 
-    public Client(Integer id, String name, String email, String password) {
-        super();
+    public Client(Integer id, String name, String email, String password, String type) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.type = type;
     }
 
     public Integer getId() {
@@ -63,6 +64,14 @@ public class Client {
         this.password = password;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public List<Movie> getMovies() {
         return movies;
     }
@@ -86,6 +95,7 @@ public class Client {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 

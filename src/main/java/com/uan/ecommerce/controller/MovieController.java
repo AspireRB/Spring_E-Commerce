@@ -1,8 +1,10 @@
 package com.uan.ecommerce.controller;
 
 import com.uan.ecommerce.model.Movie;
+import com.uan.ecommerce.service.MovieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MovieController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(MovieController.class);
+
+    @Autowired
+    private MovieService movieService;
 
     @GetMapping("")
     public String show() {
@@ -27,6 +32,7 @@ public class MovieController {
     @PostMapping("/save")
     public String save(Movie movie) {
         LOGGER.info("This is the object movie {}",movie);
+        movieService.save(movie);
         return "redirect:/movies";
     }
 
