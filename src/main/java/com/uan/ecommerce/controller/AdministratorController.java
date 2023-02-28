@@ -12,4 +12,10 @@ public class AdministratorController {
     public String home() {
         return "administrator/home";
     }
+
+    @GetMapping("/login")
+    public String login() {
+        return "administrator/login";
+    }
+
 }

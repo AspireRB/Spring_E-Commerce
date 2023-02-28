@@ -27,33 +27,31 @@
 <div class="container">
   <!-- Page Heading/Breadcrumbs -->
   <h1 class="mt-4 mb-3">
-    Spring eCommerce <small>Productos</small>
+    Cinemacion <small>Movies</small>
   </h1>
 :
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-    <li class="breadcrumb-item active">Ver Productos</li>
+    <li class="breadcrumb-item active">View Movies</li>
   </ol>
 
-  <a class="btn btn-primary" th:href="@{/movies/create}" > Crear Producto</a>
-  <h2>Productos</h2>
+  <a class="btn btn-primary" th:href="@{/movies/create}" > Create Movie</a>
+  <h2>Movies</h2>
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Descripción</th>
-        <th scope="col">Inventario</th>
-        <th scope="col">Precio</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
         <th scope="col">Acción</th>
         <th scope="col">Acción</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td ></td>
-        <td ></td>
-        <td ></td>
-        <td ></td>
+      <tr th:each="movie:${movies}">
+        <td th:text="${movie.name}"></td>
+        <td th:text="${movie.description}"></td>
+        <td th:text="${movie.price}"></td>
         <td><a  class="btn btn-warning" href="">Editar</a> </td>
         <td><a  class="btn btn-danger" href="">Eliminar</a> </td>
       </tr>       
