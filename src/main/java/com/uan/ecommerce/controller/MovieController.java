@@ -1,15 +1,33 @@
 package com.uan.ecommerce.controller;
 
+import com.uan.ecommerce.model.Movie;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/movies")
 public class MovieController {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(MovieController.class);
+
     @GetMapping("")
     public String show() {
         return "movies/show";
     }
+
+    @GetMapping("/create")
+    public String create() {
+        return "movies/create";
+    }
+
+    @PostMapping("/save")
+    public String save(Movie movie) {
+        LOGGER.info("This is the object movie {}",movie);
+        return "redirect:/movies";
+    }
+
 }
