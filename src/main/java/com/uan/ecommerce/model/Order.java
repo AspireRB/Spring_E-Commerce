@@ -10,6 +10,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String number;
     private String status = "created";
     private Date startDate;
     private Date devolutionDate;
@@ -24,9 +25,10 @@ public class Order {
     public Order() {
     }
 
-    public Order(Integer id, String status, Date startDate, Date devolutionDate, double pay) {
+    public Order(Integer id, String number, String status, Date startDate, Date devolutionDate, double pay) {
         super();
         this.id = id;
+        this.number = number;
         this.status = status;
         this.startDate = startDate;
         this.devolutionDate = devolutionDate;
@@ -39,6 +41,14 @@ public class Order {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getStatus() {
@@ -93,11 +103,11 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
+                ", number='" + number + '\'' +
                 ", status='" + status + '\'' +
                 ", startDate=" + startDate +
                 ", devolutionDate=" + devolutionDate +
                 ", pay=" + pay +
                 '}';
     }
-
 }

@@ -11,6 +11,7 @@ public class Detail {
     private String name;
     private double amount;
     private double price;
+    private double pay;
 
     @OneToOne
     private Order order;
@@ -21,12 +22,13 @@ public class Detail {
     public Detail() {
     }
 
-    public Detail(Integer id, String name, double amount, double price) {
+    public Detail(Integer id, String name, double amount, double price, double pay) {
         super();
         this.id = id;
         this.name = name;
         this.amount = amount;
         this.price = price;
+        this.pay = pay;
     }
 
     public Integer getId() {
@@ -60,7 +62,15 @@ public class Detail {
     public void setPrice(double price) {
         this.price = price;
     }
-//a
+
+    public double getPay() {
+        return pay;
+    }
+
+    public void setPay(double pay) {
+        this.pay = pay;
+    }
+
     public Order getOrder() {
         return order;
     }
@@ -79,11 +89,12 @@ public class Detail {
 
     @Override
     public String toString() {
-        return "Details{" +
+        return "Detail{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", amount=" + amount +
                 ", price=" + price +
+                ", pay=" + pay +
                 '}';
     }
 
