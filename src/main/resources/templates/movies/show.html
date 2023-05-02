@@ -53,7 +53,7 @@
         <td th:text="${movie.description}"></td>
         <td th:text="${movie.price}"></td>
         <td><a  class="btn btn-warning" th:href="@{movies/edit/{id} (id=${movie.id}) }">Editar</a> </td>
-        <td><a  class="btn btn-danger" href="">Eliminar</a> </td>
+        <td><a  class="btn btn-danger" th:href="@{movies/delete/{id} (id=${movie.id}) }">Eliminar</a> </td>
       </tr>       
     </tbody>
   </table>
