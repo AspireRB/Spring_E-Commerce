@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "clients")
-public class Client {
+@Table(name = "users")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -15,16 +15,16 @@ public class Client {
     private String password;
     private String type;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "user")
     private List<Movie> movies;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
-    public Client() {
+    public User() {
     }
 
-    public Client(Integer id, String name, String email, String password, String type) {
+    public User(Integer id, String name, String email, String password, String type) {
         super();
         this.id = id;
         this.name = name;

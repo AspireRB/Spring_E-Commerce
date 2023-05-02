@@ -17,7 +17,7 @@ public class Order {
     private double pay;
 
     @ManyToOne
-    private Client client;
+    private User user;
 
     @OneToOne(mappedBy = "order")
     private Detail details;
@@ -83,12 +83,12 @@ public class Order {
         this.pay = pay;
     }
 
-    public Client getClient() {
-        return client;
+    public User getUser() {
+        return user;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Detail getDetails() {

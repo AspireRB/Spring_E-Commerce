@@ -21,7 +21,7 @@
 <body>
 
   <!-- Navigation -->
-  <div th:include="administrator/admin.html::header"></div>
+  <div th:include="user/user.html::header"></div>
 
     <!-- Page Content -->
     <div class="container">
@@ -42,7 +42,7 @@
               <p class="card-text" th:text="${movie.name}"></p>
             </div>
             <div class="card-footer">
-              <a href="productohome.html" class="btn btn-success">View Movie</a>
+              <a th:href="@{/moviehome/{id} (id=${movie.id}) }" class="btn btn-success">View Movie</a>
             </div>
           </div>
         </div>
@@ -53,12 +53,12 @@
     </div>
     <!-- /.container -->
 
-    <!-- Footer -->
-    <div th:include="administrator/admin.html::footer"></div>
+  <!-- Footer -->
+  <div th:include="user/user.html::footer"></div>
 
   <!-- Bootstrap core JavaScript -->
-    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
-    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
   </body>
 
