@@ -14,19 +14,19 @@ public class Movie {
     private double price;
 
     @ManyToOne
-    private Client client;
+    private User user;
 
     public Movie() {
     }
 
-    public Movie(Integer id, String name, String description, String image, double price, Client client) {
+    public Movie(Integer id, String name, String description, String image, double price, User user) {
         super();
         this.id = id;
         this.name = name;
         this.description = description;
         this.image = image;
         this.price = price;
-        this.client = client;
+        this.user = user;
     }
 
     public Integer getId() {
@@ -69,12 +69,12 @@ public class Movie {
         this.price = price;
     }
 
-    public Client getClient() {
-        return client;
+    public User getUser() {
+        return user;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
