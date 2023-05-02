@@ -3,7 +3,9 @@ package com.uan.ecommerce.controller;
 import com.uan.ecommerce.model.Detail;
 import com.uan.ecommerce.model.Movie;
 import com.uan.ecommerce.model.Order;
+import com.uan.ecommerce.model.User;
 import com.uan.ecommerce.service.MovieService;
+import com.uan.ecommerce.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class HomeController {
 
     @Autowired
     private MovieService movieService;
+
+    @Autowired
+    private UserService userService;
 
     List<Detail> details = new ArrayList<Detail>();
 
@@ -64,7 +69,13 @@ public class HomeController {
         detail.setPay(movie.getPrice()*amount);
         detail.setMovie(movie);
 
-        details.add(detail);
+        //Validate that the movie is not added 2 times
+        Integer idMovie = movie.getId();
+        boolean joined = details.stream().anyMatch(m -> m.getMovie().getId()==idMovie);
+
+        if (!joined) {
+            details.add(detail);
+        }
 
         totalAmount = details.stream().mapToDouble(dt->dt.getPay()).sum();
 
@@ -73,5 +84,48 @@ public class HomeController {
         model.addAttribute("order", order);
 
         return "user/cart";
+    }
+
+    //Remove a movie of cart
+    @GetMapping("/delete/cart/{i}")
+    public String deleteMovieCart(@PathVariable Integer id, Model model) {
+        // List new of movies
+        List<Detail> ordersNew = new ArrayList<Detail>();
+
+        for(Detail detail: details) {
+            if(detail.getMovie().getId()!=id) {
+                ordersNew.add(detail);
+            }
+        }
+
+        //Put new list with movies remaining
+        details = ordersNew;
+
+        double totalAmount = 0;
+        totalAmount = details.stream().mapToDouble(dt->dt.getPay()).sum();
+
+        order.setPay(totalAmount);
+        model.addAttribute("cart", details);
+        model.addAttribute("order", order);
+        return "user/cart";
+    }
+
+    @GetMapping("/getCart")
+    public String getCart(Model model) {
+
+        model.addAttribute("cart", details);
+        model.addAttribute("order", order);
+        return "/user/cart";
+    }
+
+    @GetMapping("/order")
+    public String order(Model model) {
+
+        User user = userService.findById(1).get();
+
+        model.addAttribute("cart", details);
+        model.addAttribute("order", order);
+        model.addAttribute("user", user);
+        return "user/summaryorder";
     }
 }

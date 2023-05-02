@@ -58,7 +58,7 @@
                   <td th:text="${dorder.price}"></td>
                   <td th:text="${dorder.amount}"></td>
                   <td th:text="${dorder.pay}"></td>
-                  <td><a href="#" class="btn btn-danger">Quitar</a></td>
+                  <td><a th:href="@{/delete/cart/{id} (id=${dorder.movie.id}) }" class="btn btn-danger">Quitar</a></td>
                 </tr>
               </tbody>
             </table>
@@ -69,7 +69,7 @@
 
             <ul class="list-group">
               <li class="list-group-item"><h5 th:text="${order.pay}"></h5></li>
-              <a href="resumenorden.html" class="btn btn-dark">Ver Orden</a>
+              <a th:href="@{/order}" class="btn btn-dark">Ver Orden</a>
             </ul>
           </div>
         </div>
