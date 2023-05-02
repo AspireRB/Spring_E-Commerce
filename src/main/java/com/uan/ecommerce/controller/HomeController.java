@@ -4,7 +4,9 @@ import com.uan.ecommerce.model.Detail;
 import com.uan.ecommerce.model.Movie;
 import com.uan.ecommerce.model.Order;
 import com.uan.ecommerce.model.User;
+import com.uan.ecommerce.service.DetailService;
 import com.uan.ecommerce.service.MovieService;
+import com.uan.ecommerce.service.OrderService;
 import com.uan.ecommerce.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +17,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Struct;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/")
@@ -29,6 +33,12 @@ public class HomeController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private DetailService detailService;
 
     List<Detail> details = new ArrayList<Detail>();
 
@@ -127,5 +137,39 @@ public class HomeController {
         model.addAttribute("order", order);
         model.addAttribute("user", user);
         return "user/summaryorder";
+    }
+
+    //Save the order
+    @GetMapping("/saveOrder")
+    public String saveOrder() {
+        Date startDate = new Date();
+        order.setStartDate(startDate);
+        order.setNumber(orderService.generateOrderNumber());
+
+        //User
+        User user = userService.findById(1).get();
+
+        order.setUser(user);
+        orderService.save(order);
+
+        //Save details
+        for (Detail dt:details) {
+            dt.setOrder(order);
+            detailService.save(dt);
+        }
+
+        //Clean list and order
+        order = new Order();
+        details.clear();
+
+        return "redirect:/";
+    }
+
+    @PostMapping("/search")
+    public String searchMovie(@RequestParam String name, Model model) {
+        log.info("Name movie: {}", name);
+        List<Movie> movies = movieService.findAll().stream().filter(m -> m.getName().contains(name)).collect(Collectors.toList());
+        model.addAttribute("movies", movies);
+        return "user/home";
     }
 }

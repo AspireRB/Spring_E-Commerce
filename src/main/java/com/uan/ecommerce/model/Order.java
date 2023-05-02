@@ -83,11 +83,11 @@ public class Order {
         this.pay = pay;
     }
 
-    public User getClient() {
+    public User getUser() {
         return user;
     }
 
-    public void setClient(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
