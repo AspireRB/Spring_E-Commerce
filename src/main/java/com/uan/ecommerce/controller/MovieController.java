@@ -4,6 +4,8 @@ import com.uan.ecommerce.model.User;
 import com.uan.ecommerce.model.Movie;
 import com.uan.ecommerce.service.MovieService;
 import com.uan.ecommerce.service.UploadFileService;
+import com.uan.ecommerce.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
+    private UserService userService;
+
     @Autowired
     private UploadFileService upload;
 
@@ -39,9 +43,10 @@ public class MovieController {
     }
 
     @PostMapping("/save")
-    public String save(Movie movie, @RequestParam("img") MultipartFile file) throws IOException {
+    public String save(Movie movie, @RequestParam("img") MultipartFile file, HttpSession session) throws IOException {
         LOGGER.info("This is the object movie {}",movie);
-        User u = new User(1, "", "", "", "");
+
+        User u = userService.findById(Integer.parseInt(session.getAttribute("idUser").toString())).get();
         movie.setUser(u);
 
         //image
