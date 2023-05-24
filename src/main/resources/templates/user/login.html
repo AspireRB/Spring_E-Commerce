@@ -56,8 +56,8 @@
       </div>
     </div>
 
-    
-    <form  action="#" method="post">
+
+    <form  th:action="@{/user/acceder}" method="post">
       <div class="form-group">
         <label for="email"> Email:  </label>      
         <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su email" required autocomplete="off"> 
@@ -72,7 +72,8 @@
       <div class="form-group">
         <div class="col-sm-2">
           <button type="submit" class="btn btn-dark"> <span class="glyphicon glyphicon-ok"></span> Ingresar</button>
-        </div>      
+          <div th:if="${error}" class="error-message" th:text="${error}"></div>
+        </div>
       </div>    
     </form>
     <a th:href="@{/user/register}" class="card-link">Si aún no tiene cuenta aqui puede registrarse</a>

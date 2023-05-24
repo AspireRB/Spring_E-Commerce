@@ -25,9 +25,8 @@ public class AdministratorController {
         return "administrator/home";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "administrator/login";
-    }
+
+
+
 
 }
