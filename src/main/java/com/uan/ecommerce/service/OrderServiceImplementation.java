@@ -50,6 +50,6 @@ public class OrderServiceImplementation implements OrderService{
             numberConcatenated = "000000"+String.valueOf(number);
         }
 
-        return "";
+        return numberConcatenated;
     }
 }
