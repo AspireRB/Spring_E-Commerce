@@ -22,8 +22,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
-
     @GetMapping("/register")
     public String create() {
         return "user/register";
@@ -45,6 +43,7 @@ public class UserController {
     public String login() {
         return "user/login";
     }
+
     @PostMapping("/acceder")
     public String acceder(User user, HttpSession session,  Model model){
         logger.info("accede: {}", user);
@@ -64,6 +63,5 @@ public class UserController {
 
         return "user/login";
     }
-
 
 }

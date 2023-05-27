@@ -3,6 +3,7 @@ package com.uan.ecommerce.model;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -19,8 +20,8 @@ public class Order {
     @ManyToOne
     private User user;
 
-    @OneToOne(mappedBy = "order")
-    private Detail details;
+    @OneToMany(mappedBy = "order")
+    private List<Detail> details;
 
     public Order() {
     }
@@ -91,11 +92,11 @@ public class Order {
         this.user = user;
     }
 
-    public Detail getDetails() {
+    public List<Detail> getDetails() {
         return details;
     }
 
-    public void setDetails(Detail details) {
+    public void setDetails(List<Detail> details) {
         this.details = details;
     }
 

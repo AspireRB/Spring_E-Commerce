@@ -13,7 +13,7 @@ public class Detail {
     private double price;
     private double pay;
 
-    @OneToOne
+    @ManyToOne
     private Order order;
 
     @ManyToOne

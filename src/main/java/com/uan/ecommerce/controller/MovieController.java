@@ -26,6 +26,7 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
+    @Autowired
     private UserService userService;
 
     @Autowired
